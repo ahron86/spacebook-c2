@@ -1,4 +1,3 @@
-
 var posts = [];
 var id = 0;
 
@@ -59,40 +58,3 @@ $('.posts').on("click", ".remove", function () {
 });
 
 
-
-
-function clearList() {
-    $('.posts').empty();
-}
-
-// printar till skärmen genom loopa efter att tagit bort all data från tidigare lista 
-function renderPost() {
-    clearList();
-    var comments = "";
-    for (var i = 0; i < posts.length; i++) {
-        for (var j = 0; j < posts[i].comments.length; j++){
-            //add each comment text from the comments array to the comments var
-            comments = posts[i].comments;
-        }
-        $('.posts').append('<div class="post" data-id="' + posts[i].id + '">' +
-            '<button type="button" class="remove">REMOVE</button>' + posts[i].text + 
-            '<form class="commentForm">comment: ' + 
-                '<input type="text" id="comment" class="form-control" placeholder="Add a comment..." >username: ' + 
-                '<input type="text" id="userName" class="form-control" placeholder="User name" >' + 
-                '<button class="btn btn-primary add-comment" type="button">Comment</button>' +
-            '</form>' +
-            '<div class="comments">' + comments +'</div>' +
-        '</div>')
-    }
-}
-
-//ta bort post
-$('body').on("click", ".remove", function () {
-    var itemDelete = $(this).parent().data().id;
-    for (var i = 0; i < posts.length; i++) {
-        if (itemDelete == posts[i].id) {
-            posts.splice(i, 1);
-            renderPost();
-        }
-    }
-});
